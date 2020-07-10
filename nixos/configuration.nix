@@ -89,7 +89,7 @@
     enable = true;
     # autoSuspend = false;
     autoLogin = {
-      enable = true;
+      enable = false;
       user = "david";
     };
   };
