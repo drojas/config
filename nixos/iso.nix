@@ -23,8 +23,7 @@
 
   # automatically run install script
   environment.etc."profile.local".text = ''
-    /etc/install.sh
-    reboot
+    sudo /etc/install.sh && reboot
   '';
 
 
