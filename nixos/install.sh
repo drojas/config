@@ -36,4 +36,4 @@ echo "copy closure to nix store"
 nix copy --from file:///etc/system $(cat /etc/closure-nix-store-path.txt) --option binary-caches "" --no-check-sigs
 
 echo "install nix"
-nixos-install --no-root-passwd --option binary-caches "" --system $(cat /etc/closure-nix-store-path.txt)
+nixos-install --option binary-caches "" --system $(cat /etc/closure-nix-store-path.txt)
