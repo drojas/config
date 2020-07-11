@@ -20,6 +20,7 @@
     "ntfs"
   ];
   boot.plymouth.enable = true;
+  console.earlySetup = true;
 
   networking.hostName = "matebook"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -93,7 +94,7 @@
     enable = true;
     # autoSuspend = false;
     autoLogin = {
-      enable = false;
+      enable = true;
       user = "david";
     };
   };
