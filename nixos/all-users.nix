@@ -10,7 +10,7 @@ in {
     group = username;
     extraGroups = [
       "wheel" "disk" "audio" "video"
-      "network-manager" "systemd-journal"
+      "networkmanager" "systemd-journal"
       "docker"
       "kubernetes"
     ];
