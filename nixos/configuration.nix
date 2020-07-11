@@ -19,8 +19,14 @@
     "ext4"
     "ntfs"
   ];
-  boot.plymouth.enable = true;
-  console.earlySetup = true;
+  boot.plymouth = {
+    enable = true;
+    # theme = "fade-in";
+    logo = ./saturn_small.png;
+    extraConfig = ''
+      DeviceScale=2
+    '';
+  };
 
   networking.hostName = "matebook"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
