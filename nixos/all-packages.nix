@@ -1,5 +1,10 @@
 { config, pkgs, lib, ... }:
 {
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+    }))
+  ];
 
   boot.cleanTmpDir = true;
 
@@ -16,6 +21,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    emacsGit
     vim
     git
     brave
