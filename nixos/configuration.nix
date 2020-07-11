@@ -19,6 +19,7 @@
     "ext4"
     "ntfs"
   ];
+  boot.plymouth.enable = true;
 
   networking.hostName = "matebook"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
