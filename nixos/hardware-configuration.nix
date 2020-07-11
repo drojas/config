@@ -9,7 +9,7 @@
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
-  boot.kernelModules = [ "kvm-intel" "modprobe" ];
+  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
@@ -35,5 +35,9 @@
     pulseaudio.enable = true;
     pulseaudio.package = pkgs.pulseaudioFull;
     pulseaudio.support32Bit = true;
+    bluetooth.enable = true;
+    bluetooth.config = {
+      General = { Enable = "Source,Sink,Media,Socket"; };
+    };
   };
 }

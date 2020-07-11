@@ -35,14 +35,14 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
   # };
 
   # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "America/Los_Angeles"; 
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -83,7 +83,9 @@
   # services.xserver.xkbOptions = "eurosign:e";
 
   # Enable touchpad support.
-  services.xserver.libinput.enable = true;
+  services.xserver.libinput = {
+    enable = true;
+  };
 
   services.xserver.desktopManager.gnome3.enable = true;
   services.xserver.displayManager.gdm = {
