@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -26,6 +26,37 @@
     extraConfig = ''
       DeviceScale=2
     '';
+  };
+
+  systemd.user.services.gnome-fractalart-background =
+  let
+    flags = lib.concatStringsSep " "
+    ([ "--bg-fill" "--no-fehbg" ]);
+  in  {
+    wantedBy = [ "graphical-session.target"  ];
+    after = [ "graphical-session-pre.target" ];
+    partOf = [ "graphical-session.target" ];
+    description = "Set random desktop background using FractalArt and feh";
+
+    serviceConfig = with pkgs; {
+      Type = "oneshot";
+      ExecStart = [
+        "${haskellPackages.FractalArt}/bin/FractalArt --no-bg -f .background-image"
+        "${haskellPackages.FractalArt}/bin/FractalArt --no-bg -f .screensaver-image"
+        "${glib.bin}/bin/gsettings set org.gnome.desktop.background picture-uri '%h/.background-image'"
+        "${glib.bin}/bin/gsettings set org.gnome.desktop.screensaver picture-uri '%h/.screensaver-image'"
+      ];
+      IOSchedulingClass = "idle";
+    };
+  };
+
+  systemd.user.timers.gnome-fractalart-background = {
+    description = "Set random desktop background using FractalArt and feh"; 
+    wantedBy = [ "timers.target" ];
+
+    timerConfig = { 
+      OnUnitActiveSec = "5m";
+    };
   };
 
   networking.hostName = "matebook"; # Define your hostname.
