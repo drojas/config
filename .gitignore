@@ -2,3 +2,4 @@ nixos/closure-nix-store-path.txt
 nixos/result-closure
 nixos/result-iso
 nixos/system/
+nixos/result
